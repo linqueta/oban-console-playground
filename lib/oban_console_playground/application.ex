@@ -19,7 +19,6 @@ defmodule ObanConsolePlayground.Application do
       # {ObanConsolePlayground.Worker, arg},
       # Start to serve requests, typically the last entry
       ObanConsolePlaygroundWeb.Endpoint,
-
       {Oban, Application.fetch_env!(:oban_console_playground, Oban)}
     ]
 

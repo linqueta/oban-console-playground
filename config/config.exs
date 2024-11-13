@@ -63,8 +63,15 @@ config :phoenix, :json_library, Jason
 
 config :oban_console_playground, Oban,
   engine: Oban.Engines.Basic,
-  queues: [default: 10],
-  repo: ObanConsolePlayground.Repo
+  queues: [default: 10, registration: 10],
+  repo: ObanConsolePlayground.Repo,
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       # Each minute
+       {"* * * * *", ObanConsolePlayground.Workers.RegisterCustomer}
+     ]}
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
