@@ -10,14 +10,17 @@ defmodule ObanConsolePlayground.Application do
     children = [
       ObanConsolePlaygroundWeb.Telemetry,
       ObanConsolePlayground.Repo,
-      {DNSCluster, query: Application.get_env(:oban_console_playground, :dns_cluster_query) || :ignore},
+      {DNSCluster,
+       query: Application.get_env(:oban_console_playground, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: ObanConsolePlayground.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: ObanConsolePlayground.Finch},
       # Start a worker by calling: ObanConsolePlayground.Worker.start_link(arg)
       # {ObanConsolePlayground.Worker, arg},
       # Start to serve requests, typically the last entry
-      ObanConsolePlaygroundWeb.Endpoint
+      ObanConsolePlaygroundWeb.Endpoint,
+
+      {Oban, Application.fetch_env!(:oban_console_playground, Oban)}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
