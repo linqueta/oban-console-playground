@@ -63,13 +63,14 @@ config :phoenix, :json_library, Jason
 
 config :oban_console_playground, Oban,
   engine: Oban.Engines.Basic,
-  queues: [default: 10, registration: 10],
+  queues: [default: 10, registration: 10, order: 10],
   repo: ObanConsolePlayground.Repo,
   plugins: [
     {Oban.Plugins.Cron,
      crontab: [
-       # Each minute
-       {"* * * * *", ObanConsolePlayground.Workers.RegisterCustomer}
+       # Every minute
+       {"* * * * *", ObanConsolePlayground.Workers.RegisterCustomer},
+       {"* * * * *", ObanConsolePlayground.Workers.Checkout}
      ]}
   ]
 
