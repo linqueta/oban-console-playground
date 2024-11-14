@@ -61,7 +61,7 @@ defmodule ObanConsolePlayground.MixProject do
       {:bandit, "~> 1.5"},
       {:oban, "~> 2.17"},
       {:faker, "~> 0.18.0"},
-      {:oban_console, path: "../oban-console"}
+      {:oban_console, "~> 0.1.0"}
     ]
   end
 

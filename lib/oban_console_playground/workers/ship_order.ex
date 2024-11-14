@@ -1,7 +1,6 @@
 defmodule ObanConsolePlayground.Workers.ShipOrder do
   use Oban.Worker, queue: :order
 
-  alias ObanConsolePlayground.Accounts
   alias ObanConsolePlayground.Repo
 
   @impl true
